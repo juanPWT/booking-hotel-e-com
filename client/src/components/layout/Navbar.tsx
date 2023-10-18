@@ -1,21 +1,42 @@
 import React from "react";
 import { userProps } from "../../api/interface";
 import { Link } from "react-router-dom";
+import DarkMOdeToggle from "../DarkMOdeToggle";
 
 interface childUserProps {
   user: userProps;
 }
 
 const Navbar: React.FC<childUserProps> = ({ user }) => {
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    window.location.reload();
+  };
+
   return (
     <>
-      <div className="navbar bg-base-100  ">
+      <div className="navbar bg-base-100  dark:bg-gradient-to-l dark:from-fuchsia-500 dark:bg-transparent">
         <div className="flex-1">
-          <span className="m-4 normal-case font-bold text-2xl">YOO</span>
+          <span className="m-4 normal-case font-bold text-2xl dark:text-white">
+            YOO
+          </span>
         </div>
         <div className="flex-none">
-          {user ? (
+          {user.id === 0 ? (
             <>
+              <div className="flex gap-5 justify-center items-center">
+                <DarkMOdeToggle />
+                <Link
+                  to={"/auth"}
+                  className="btn btn-secondary xl:text-xl font-bold dark:btn-neutral"
+                >
+                  Login
+                </Link>
+              </div>
+            </>
+          ) : (
+            <>
+              <DarkMOdeToggle />
               <div className="dropdown dropdown-end">
                 <label tabIndex={0} className="btn btn-ghost btn-circle">
                   <div className="indicator">
@@ -77,23 +98,17 @@ const Navbar: React.FC<childUserProps> = ({ user }) => {
                   className="menu menu-sm dropdown-content mt-7 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
                 >
                   <li>
-                    <a className="justify-between">Profile</a>
+                    <a className="justify-between">{user.name}</a>
                   </li>
                   <li>
-                    <a>Logout</a>
+                    <button
+                      onClick={() => handleLogout()}
+                      className="bg-fuchsia-400 text-white flex justify-center "
+                    >
+                      Logout
+                    </button>
                   </li>
                 </ul>
-              </div>
-            </>
-          ) : (
-            <>
-              <div>
-                <Link
-                  to={"/auth"}
-                  className="btn btn-secondary xl:text-xl font-bold"
-                >
-                  Login
-                </Link>
               </div>
             </>
           )}

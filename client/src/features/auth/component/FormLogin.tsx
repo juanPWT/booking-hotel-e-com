@@ -2,18 +2,38 @@ import React from "react";
 import { FormikHelpers, useFormik } from "formik";
 import { loginSchema } from "../../../schemas/index";
 import { loginUserProps } from "../../../api/interface/index";
+import { postDataLoginUser } from "../../../api/index";
+import { toast } from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 interface childLoginProps {
   setForm: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const FormLogin: React.FC<childLoginProps> = ({ setForm }) => {
+  const navigate = useNavigate();
+
   const onSubmit = (
     values: loginUserProps,
     action: FormikHelpers<loginUserProps>
   ) => {
-    console.log(values);
+    const postProccess = async () => {
+      const post = await postDataLoginUser(values);
+      if (post === "Invalid password") {
+        toast.error("Password salah");
+      } else if (post === "email not found") {
+        toast.error("Email tidak terdaftar");
+        setForm("register");
+      } else {
+        toast.success("Login berhasil");
+        setTimeout(() => {
+          navigate("/");
+        }, 1000);
+        localStorage.setItem("token", post.jwt_token);
+      }
+    };
 
+    postProccess();
     action.resetForm();
   };
 
@@ -32,6 +52,7 @@ const FormLogin: React.FC<childLoginProps> = ({ setForm }) => {
     validationSchema: loginSchema,
     onSubmit,
   });
+
   return (
     <form onSubmit={handleSubmit} autoComplete="off">
       <label htmlFor="email" className="flex flex-col gap-2 mb-3">
@@ -56,7 +77,7 @@ const FormLogin: React.FC<childLoginProps> = ({ setForm }) => {
       <label htmlFor="password" className="flex flex-col gap-2 mb-3">
         <span className="text-gray-500 font-semibold">Password: </span>
         <input
-          type="text"
+          type="password"
           id="password"
           placeholder="Masukan password...."
           className={`px-3 py-2 rounded-lg w-[400px]  focus:outline-4 text-gray-700 ${

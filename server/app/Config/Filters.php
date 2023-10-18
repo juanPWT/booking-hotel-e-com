@@ -10,7 +10,6 @@ use CodeIgniter\Filters\InvalidChars;
 use CodeIgniter\Filters\SecureHeaders;
 
 //api
-use App\Filters\Cors;
 use App\Filters\AuthFilter;
 
 class Filters extends BaseConfig
@@ -29,7 +28,7 @@ class Filters extends BaseConfig
         'invalidchars'  => InvalidChars::class,
         'secureheaders' => SecureHeaders::class,
         //api
-        'cors'          => Cors::class,
+        'cors'          => \Fluent\Cors\Filters\CorsFilter::class,
         'authFilter'    => AuthFilter::class
     ];
 
@@ -42,7 +41,6 @@ class Filters extends BaseConfig
      */
     public array $globals = [
         'before' => [
-            'cors',
             // 'honeypot',
             // 'csrf',
             // 'invalidchars',
@@ -74,5 +72,10 @@ class Filters extends BaseConfig
      * Example:
      * 'isLoggedIn' => ['before' => ['account/*', 'profiles/*']]
      */
-    public array $filters = [];
+    public array $filters = [
+        'cors' => [
+            'before' => ['api/*'],
+            'after' => ['api/*']
+        ],
+    ];
 }

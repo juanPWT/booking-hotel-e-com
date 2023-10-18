@@ -36,3 +36,10 @@ export interface loginUserProps {
   email: string;
   password: string;
 }
+
+export interface postDataRegister {
+  name: string;
+  email: string;
+  contact: number;
+  password: string;
+}

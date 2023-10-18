@@ -2,12 +2,16 @@ import React, { useState } from "react";
 import LabelTitle from "../../components/LabelTitle";
 import FormLogin from "./component/FormLogin";
 import FormRegister from "./component/FormRegister";
+import { Toaster } from "react-hot-toast";
 
 const Auth = () => {
   const [form, setForm] = useState("login");
 
   return (
     <>
+      <div>
+        <Toaster />
+      </div>
       <div className="min-h-screen flex flex-col gap-2 xl:flex-row justify-between p-5 ">
         <div className="w-full min-h-screen  flex  ">
           <div
@@ -20,7 +24,9 @@ const Auth = () => {
               <button
                 onClick={() => setForm("login")}
                 className={`${
-                  form === "login" ? "bg-fuchsia-400 text-white" : "bg-gray-50"
+                  form === "login"
+                    ? "bg-fuchsia-400 text-white"
+                    : "bg-gray-50 hover:bg-gray-200"
                 } flex w-40 h-1/2  rounded-l-lg`}
               >
                 <h5 className="m-auto font-semibold">Login</h5>
@@ -30,7 +36,7 @@ const Auth = () => {
                 className={`${
                   form === "register"
                     ? "bg-fuchsia-400 text-white"
-                    : "bg-gray-50"
+                    : "bg-gray-50 hover:bg-gray-200"
                 } w-40 h-1/2   rounded-r-lg flex`}
               >
                 <h5 className="m-auto font-semibold">Regiter</h5>

@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body * {
+  @apply transition-colors duration-200;
+}
+
+#toggle:checked ~ label div.toggle-circle {
+  @apply translate-x-3 bg-slate-600;
+}

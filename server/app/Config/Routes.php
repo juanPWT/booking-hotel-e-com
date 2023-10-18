@@ -13,17 +13,17 @@ use CodeIgniter\Router\RouteCollection;
 //filter [authFilter => untuk client] 
 
     //facility
-    $routes->get('facility', 'Facility::index');
-    $routes->post('facility', 'Facility::create');
-    $routes->delete('facility', 'Facility::delete');
+    $routes->get('api/facility', 'Facility::index');
+    $routes->post('api/facility', 'Facility::create');
+    $routes->delete('api/facility', 'Facility::delete');
 
     //type
-    $routes->get('type', 'Type::index');
-    $routes->get('type/(:any)', 'Type::show/$1');
-    $routes->post('type', 'Type::create' );
-    $routes->patch('type/(:any)', 'Type::update/$1');
-    $routes->delete('type/(:any)', 'Type::delete/$1');
+    $routes->get('api/type', 'Type::index');
+    $routes->get('api/type/(:any)', 'Type::show/$1');
+    $routes->post('api/type', 'Type::create' );
+    $routes->patch('api/type/(:any)', 'Type::update/$1');
+    $routes->delete('api/type/(:any)', 'Type::delete/$1');
 
     //auth client
-    $routes->post('auth/register', 'Auth::register');
-    $routes->post('auth/login', 'Auth::login');
+    $routes->post('api/auth/register', 'Auth::register');
+    $routes->post('api/auth/login', 'Auth::login');

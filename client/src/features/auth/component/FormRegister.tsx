@@ -1,7 +1,12 @@
 import React from "react";
 import { FormikHelpers, useFormik } from "formik";
 import { resgisterSchema } from "../../../schemas/index";
-import { registerUserProps } from "../../../api/interface/index";
+import {
+  registerUserProps,
+  postDataRegister,
+} from "../../../api/interface/index";
+import { toast } from "react-hot-toast";
+import { postDataRegisterUser } from "../../../api/index";
 
 interface childRegisterProps {
   setForm: React.Dispatch<React.SetStateAction<string>>;
@@ -12,8 +17,18 @@ const FormRegister: React.FC<childRegisterProps> = ({ setForm }) => {
     values: registerUserProps,
     actions: FormikHelpers<registerUserProps>
   ) => {
-    console.log(values);
-
+    const postProccess = async () => {
+      const postData: postDataRegister = {
+        email: values.email,
+        name: values.name,
+        contact: values.contact,
+        password: values.password,
+      };
+      const request = await postDataRegisterUser(postData);
+      toast.success(request);
+      setForm("login");
+    };
+    postProccess();
     actions.resetForm();
   };
 
@@ -165,8 +180,8 @@ const FormRegister: React.FC<childRegisterProps> = ({ setForm }) => {
           <span className="text-white font-semibold">Sign up</span>
         </button>
         <button
-          type="button"
           onClick={() => setForm("login")}
+          type="button"
           className="m-auto hover:underline text-gray-700"
         >
           belum punya akun ?

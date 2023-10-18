@@ -9,13 +9,13 @@ const Hero = () => {
           <Carousel />
         </div>
         <div className="my-2 mx-5">
-          <h1 className="font-bold text-4xl text-gray-700">
+          <h1 className="font-bold text-4xl text-gray-700 dark:text-white">
             Selamat datang di{" "}
             <span className="bg-gradient-to-r from-fuchsia-600 to-fuchsia-300 text-transparent bg-clip-text text-5xl">
               YOO.
             </span>
           </h1>
-          <p className="text-xl font-semibold my-2 text-gray-700">
+          <p className="text-xl font-semibold my-2 text-gray-700 dark:text-white">
             Hotel and Homes terbaik di Dunia karena menyediakan berbagai type
             room dan berbagai fasilitas lengkap ada di{" "}
             <span className="bg-gradient-to-r from-fuchsia-600 to-fuchsia-400 text-transparent bg-clip-text text-2xl font-bold">

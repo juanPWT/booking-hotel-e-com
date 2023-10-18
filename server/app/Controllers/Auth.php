@@ -10,6 +10,7 @@ class Auth extends BaseController
     use ResponseTrait;
     protected $mdl;
     public function __construct() {
+        
         $this->mdl = new UserModel();
     }
     public function register()
