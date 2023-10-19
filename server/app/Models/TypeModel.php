@@ -69,7 +69,7 @@ class TypeModel extends Model
     }
 
     public function findById($id) {
-        $data = "SELECT type.name, type.price, type.description, CONCAT('http://localhost:8080/public/img/type/', type.image) AS imageURL FROM type WHERE type.id = $id";
+        $data = "SELECT type.id, type.name, type.price, type.description, CONCAT('http://localhost:8080/public/img/type/', type.image) AS imageURL FROM type WHERE type.id = $id";
 
         $querySet = $this->db->query($data)->getRow();
         if ($querySet) {

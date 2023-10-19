@@ -56,7 +56,9 @@ const FormLogin: React.FC<childLoginProps> = ({ setForm }) => {
   return (
     <form onSubmit={handleSubmit} autoComplete="off">
       <label htmlFor="email" className="flex flex-col gap-2 mb-3">
-        <span className="text-gray-500 font-semibold">Email: </span>
+        <span className="text-gray-500 font-semibold dark:text-white">
+          Email:{" "}
+        </span>
         <input
           type="email"
           id="email"
@@ -75,7 +77,9 @@ const FormLogin: React.FC<childLoginProps> = ({ setForm }) => {
         )}
       </label>
       <label htmlFor="password" className="flex flex-col gap-2 mb-3">
-        <span className="text-gray-500 font-semibold">Password: </span>
+        <span className="text-gray-500 font-semibold dark:text-white">
+          Password:{" "}
+        </span>
         <input
           type="password"
           id="password"

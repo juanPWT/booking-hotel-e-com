@@ -24,6 +24,13 @@ use CodeIgniter\Router\RouteCollection;
     $routes->patch('api/type/(:any)', 'Type::update/$1');
     $routes->delete('api/type/(:any)', 'Type::delete/$1');
 
+
+    //room
+    $routes->post('api/room', 'Room::create');
+    $routes->get('api/room', 'Room::index');
+    $routes->get('api/room/(:any)', 'Room::show/$1');
+    $routes->get('api/available/room/(:any)', 'Room::availableRoom/$1');
+
     //auth client
     $routes->post('api/auth/register', 'Auth::register');
     $routes->post('api/auth/login', 'Auth::login');

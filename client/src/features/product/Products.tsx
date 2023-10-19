@@ -1,9 +1,8 @@
 import * as React from "react";
 import * as fetch from "../../api";
-import { typeProps } from "../../api/interface/index";
+import { typeProps, userProps } from "../../api/interface/index";
 import { Link } from "react-router-dom";
 import { rupiah } from "../../hook/formater-currency";
-import { userProps } from "../../api/interface/index";
 import { toast } from "react-hot-toast";
 
 interface childProductsProps {
@@ -81,8 +80,9 @@ const Product: React.FC<childProductsProps> = ({ user }) => {
                       Booking sekarang
                     </button>
                   ) : (
+                    //discard or no
                     <Link
-                      to={"/"}
+                      to={"/checking/" + data.id}
                       className="p-2 bg-yellow-400 rounded-xl text-white font-bold hover:bg-yellow-200 hover:text-gray-600 dark:bg-fuchsia-500 dark:hover:bg-fuchsia-300"
                     >
                       Booking sekarang

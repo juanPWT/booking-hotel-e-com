@@ -9,6 +9,7 @@ export interface typeProps {
 
 export interface typeDetail {
   type: {
+    id: number;
     name: string;
     price: number;
     description: string;
@@ -42,4 +43,9 @@ export interface postDataRegister {
   email: string;
   contact: number;
   password: string;
+}
+
+export interface roomAvailable {
+  typeName: string;
+  roomAvailable: number;
 }

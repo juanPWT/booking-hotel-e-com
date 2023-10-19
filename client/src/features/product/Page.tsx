@@ -1,7 +1,11 @@
 import { useEffect, useState } from "react";
 import * as fetch from "../../api/index";
 import InfoType from "./component/InfoType";
-import { typeDetail, userProps } from "../../api/interface/index";
+import {
+  typeDetail,
+  userProps,
+  roomAvailable,
+} from "../../api/interface/index";
 import Navbar from "../../components/layout/Navbar";
 import Footer from "../../components/layout/Footer";
 import React from "react";
@@ -11,6 +15,7 @@ import { Toaster } from "react-hot-toast";
 const DetailProduct = () => {
   const [typeDetail, setTypeDetail] = useState<typeDetail>({
     type: {
+      id: 0,
       name: "",
       price: 0,
       description: "",
@@ -24,6 +29,10 @@ const DetailProduct = () => {
     name: "",
     contact: 0,
   });
+  const [roomAvailable, setRoomAvailable] = useState<roomAvailable>({
+    typeName: "",
+    roomAvailable: 0,
+  });
 
   const getId = location.pathname.split("/");
   const id = Number(getId[2]);
@@ -34,6 +43,13 @@ const DetailProduct = () => {
       setTypeDetail(get);
     };
 
+    const getRoomAvailable = async () => {
+      const get = await fetch.getRoomAvailable(id);
+
+      setRoomAvailable(get);
+    };
+
+    getRoomAvailable();
     getTypeById();
   }, [id]);
 
@@ -59,7 +75,11 @@ const DetailProduct = () => {
           <Navbar user={user} />
         </div>
         <div className="my-20 mx-auto z-0">
-          <InfoType typeDetail={typeDetail} user={user} />
+          <InfoType
+            typeDetail={typeDetail}
+            user={user}
+            roomAvailable={roomAvailable}
+          />
         </div>
         <div className="mt-auto">
           <Footer />

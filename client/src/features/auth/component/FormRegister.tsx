@@ -53,7 +53,9 @@ const FormRegister: React.FC<childRegisterProps> = ({ setForm }) => {
   return (
     <form onSubmit={handleSubmit} autoComplete="off">
       <label htmlFor="email" className="flex flex-col gap-2 mb-3">
-        <span className="text-gray-500 font-semibold">Email: </span>
+        <span className="text-gray-500 font-semibold dark:text-white">
+          Email:{" "}
+        </span>
         <input
           type="text"
           id="email"
@@ -74,7 +76,9 @@ const FormRegister: React.FC<childRegisterProps> = ({ setForm }) => {
       </label>
       <div className="flex gap-1">
         <label htmlFor="name" className="flex flex-col gap-2 mb-3">
-          <span className="text-gray-500 font-semibold">Name: </span>
+          <span className="text-gray-500 font-semibold dark:text-white">
+            Name:{" "}
+          </span>
           <input
             type="text"
             id="name"
@@ -97,7 +101,9 @@ const FormRegister: React.FC<childRegisterProps> = ({ setForm }) => {
         </label>
 
         <label htmlFor="contact" className="flex flex-col gap-2 mb-3">
-          <span className="text-gray-500 font-semibold">No Hp: </span>
+          <span className="text-gray-500 font-semibold dark:text-white">
+            No Hp:{" "}
+          </span>
           <input
             type="text"
             id="contact"
@@ -122,7 +128,9 @@ const FormRegister: React.FC<childRegisterProps> = ({ setForm }) => {
         </label>
       </div>
       <label htmlFor="password" className="flex flex-col gap-2 mb-3">
-        <span className="text-gray-500 font-semibold">Password: </span>
+        <span className="text-gray-500 font-semibold dark:text-white">
+          Password:{" "}
+        </span>
         <input
           type="password"
           id="password"
@@ -146,7 +154,7 @@ const FormRegister: React.FC<childRegisterProps> = ({ setForm }) => {
         )}
       </label>
       <label htmlFor="passwordConf" className="flex flex-col gap-2 mb-3">
-        <span className="text-gray-500 font-semibold">
+        <span className="text-gray-500 font-semibold dark:text-white">
           konfirmasi Password:{" "}
         </span>
         <input
@@ -184,7 +192,7 @@ const FormRegister: React.FC<childRegisterProps> = ({ setForm }) => {
           type="button"
           className="m-auto hover:underline text-gray-700"
         >
-          belum punya akun ?
+          Sudah punya akun ?
         </button>
       </div>
     </form>

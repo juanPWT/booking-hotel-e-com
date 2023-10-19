@@ -21,6 +21,20 @@ export const fetchTypeById = async (id: number) => {
   }
 };
 
+export const getRoomAvailable = async (idType: number) => {
+  try {
+    const get = await axios.get(
+      `http://localhost:8080/api/available/room/${idType}`
+    );
+
+    return get.data.datas.room;
+  } catch (error: unknown) {
+    if (error instanceof Error && axios.isAxiosError(error) && error.response) {
+      return error;
+    }
+  }
+};
+
 export const postDataRegisterUser = async (data: postDataRegister) => {
   try {
     const post = await axios.post(

@@ -26,6 +26,11 @@ class Room extends Migration
                  'constraint'     => 20,
                  'unsigned'       => true,
             ],
+            'isFill' => [
+                 'type'         => 'BOOLEAN',
+                 'null' => true,
+                 'default' => false,
+            ],
         ]);
     
           $this->forge->addKey('id', true);
