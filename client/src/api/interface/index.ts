@@ -5,6 +5,7 @@ export interface typeProps {
   description: string;
   imageURL: string;
   facility_name: string;
+  roomAvailable: number;
 }
 
 export interface typeDetail {

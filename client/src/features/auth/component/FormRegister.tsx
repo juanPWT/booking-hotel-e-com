@@ -61,7 +61,7 @@ const FormRegister: React.FC<childRegisterProps> = ({ setForm }) => {
           id="email"
           placeholder="Masukan email...."
           name="email"
-          className={`px-3 py-2 rounded-lg w-[400px]  focus:outline-4 text-gray-700 ${
+          className={`px-3 py-2 rounded-lg w-[400px]   text-gray-700 ${
             errors.email ? "focus:outline-red-300" : "focus:outline-emerald-300"
           }`}
           onChange={handleChange}
@@ -69,7 +69,9 @@ const FormRegister: React.FC<childRegisterProps> = ({ setForm }) => {
           value={values.email}
         />
         {errors ? (
-          <p className="text-[12px] text-white font-normal ">{errors.email}</p>
+          <p className="text-[12px] text-red-500 dark:text-red-300 font-normal ">
+            {errors.email}
+          </p>
         ) : (
           ""
         )}
@@ -84,7 +86,7 @@ const FormRegister: React.FC<childRegisterProps> = ({ setForm }) => {
             id="name"
             placeholder="Masukan nama anda...."
             name="name"
-            className={`px-3 py-2 rounded-lg w-[200px] focus:outline-4 text-gray-700 ${
+            className={`px-3 py-2 rounded-lg w-[200px]  text-gray-700 ${
               errors.name
                 ? "focus:outline-red-300 "
                 : "focus:outline-emerald-300 "
@@ -94,7 +96,9 @@ const FormRegister: React.FC<childRegisterProps> = ({ setForm }) => {
             value={values.name}
           />
           {errors ? (
-            <p className="text-[12px] text-white font-normal ">{errors.name}</p>
+            <p className="text-[12px] text-red-500 dark:text-red-300 font-normal ">
+              {errors.name}
+            </p>
           ) : (
             ""
           )}
@@ -109,7 +113,7 @@ const FormRegister: React.FC<childRegisterProps> = ({ setForm }) => {
             id="contact"
             placeholder="Masukan no.HP yang bisa dihubungi.."
             name="contact"
-            className={`px-3 py-2 rounded-lg w-[200px]  focus:outline-4 text-gray-700 ${
+            className={`px-3 py-2 rounded-lg w-[200px]   text-gray-700 ${
               errors.contact
                 ? "focus:outline-red-300"
                 : "focus:outline-emerald-300"
@@ -119,7 +123,7 @@ const FormRegister: React.FC<childRegisterProps> = ({ setForm }) => {
             value={values.contact}
           />
           {errors ? (
-            <p className="text-[12px] text-white font-normal ">
+            <p className="text-[12px] text-red-500 dark:text-red-300 font-normal ">
               {errors.contact}
             </p>
           ) : (
@@ -136,7 +140,7 @@ const FormRegister: React.FC<childRegisterProps> = ({ setForm }) => {
           id="password"
           placeholder="Masukan password...."
           name="password"
-          className={`px-3 py-2 rounded-lg w-[400px]  focus:outline-4 text-gray-700 ${
+          className={`px-3 py-2 rounded-lg w-[400px]   text-gray-700 ${
             errors.password
               ? "focus:outline-red-300"
               : "focus:outline-emerald-300"
@@ -146,7 +150,7 @@ const FormRegister: React.FC<childRegisterProps> = ({ setForm }) => {
           value={values.password}
         />
         {errors ? (
-          <p className="text-[12px] text-white font-normal ">
+          <p className="text-[12px] text-red-500 dark:text-red-300 font-normal ">
             {errors.password}
           </p>
         ) : (
@@ -162,7 +166,7 @@ const FormRegister: React.FC<childRegisterProps> = ({ setForm }) => {
           id="passwordConf"
           placeholder="Masukan password lagi...."
           name="passwordConf"
-          className={`px-3 py-2 rounded-lg w-[400px] focus:outline-emerald-300 focus:outline-4 text-gray-700 ${
+          className={`px-3 py-2 rounded-lg w-[400px] focus:outline-emerald-300  text-gray-700 ${
             errors.passwordConf
               ? "focus:outline-red-300"
               : "focus:outline-emerald-300"
@@ -172,7 +176,7 @@ const FormRegister: React.FC<childRegisterProps> = ({ setForm }) => {
           value={values.passwordConf}
         />
         {errors ? (
-          <p className="text-[12px] text-white font-normal ">
+          <p className="text-[12px] text-red-500 dark:text-red-300 font-normal ">
             {errors.passwordConf}
           </p>
         ) : (
@@ -190,7 +194,7 @@ const FormRegister: React.FC<childRegisterProps> = ({ setForm }) => {
         <button
           onClick={() => setForm("login")}
           type="button"
-          className="m-auto hover:underline text-gray-700"
+          className="m-auto hover:underline text-sky-700 dark:text-sky-300"
         >
           Sudah punya akun ?
         </button>

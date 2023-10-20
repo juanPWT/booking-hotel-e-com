@@ -63,7 +63,7 @@ const FormLogin: React.FC<childLoginProps> = ({ setForm }) => {
           type="email"
           id="email"
           placeholder="Masukan email...."
-          className={`px-3 py-2 rounded-lg w-[400px]  focus:outline-4 text-gray-700 ${
+          className={`px-3 py-2 rounded-lg w-[400px]   text-gray-700 ${
             errors.email ? "focus:outline-red-300" : "focus:outline-emerald-300"
           }`}
           onChange={handleChange}
@@ -71,7 +71,9 @@ const FormLogin: React.FC<childLoginProps> = ({ setForm }) => {
           value={values.email}
         />
         {errors ? (
-          <p className="text-[12px] text-white font-normal ">{errors.email}</p>
+          <p className="text-[12px] text-red-500 dark:text-red-300 font-normal ">
+            {errors.email}
+          </p>
         ) : (
           ""
         )}
@@ -84,7 +86,7 @@ const FormLogin: React.FC<childLoginProps> = ({ setForm }) => {
           type="password"
           id="password"
           placeholder="Masukan password...."
-          className={`px-3 py-2 rounded-lg w-[400px]  focus:outline-4 text-gray-700 ${
+          className={`px-3 py-2 rounded-lg w-[400px]   text-gray-700 ${
             errors.password
               ? "focus:outline-red-300"
               : "focus:outline-emerald-300"
@@ -94,7 +96,7 @@ const FormLogin: React.FC<childLoginProps> = ({ setForm }) => {
           value={values.password}
         />
         {errors ? (
-          <p className="text-[12px] text-white font-normal ">
+          <p className="text-[12px] text-red-500  dark:text-red-300  font-normal ">
             {errors.password}
           </p>
         ) : (
@@ -112,7 +114,7 @@ const FormLogin: React.FC<childLoginProps> = ({ setForm }) => {
         <button
           type="button"
           onClick={() => setForm("register")}
-          className="m-auto hover:underline text-gray-700"
+          className="m-auto hover:underline text-sky-700 dark:text-sky-300"
         >
           belum punya akun ?
         </button>

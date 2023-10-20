@@ -27,7 +27,7 @@ const Product: React.FC<childProductsProps> = ({ user }) => {
         {type.map((data) => {
           return (
             <div
-              className="card w-96 bg-base-100 shadow-xl dark:bg-slate-500"
+              className="card w-96 bg-base-100 shadow-xl dark:bg-transparent/20"
               key={data.id}
             >
               <figure>
@@ -79,8 +79,22 @@ const Product: React.FC<childProductsProps> = ({ user }) => {
                     >
                       Booking sekarang
                     </button>
+                  ) : data.roomAvailable == 0 ? (
+                    <button
+                      disabled={true}
+                      onMouseOver={() => {
+                        toast(
+                          "maaf kamar full booking kaka, coba cek type kamar lainya",
+                          {
+                            className: "bg-yellow-500 font-semibold text-white",
+                          }
+                        );
+                      }}
+                      className="p-2 bg-yellow-100 rounded-xl text-gray-700 font-bold   dark:bg-fuchsia-100 "
+                    >
+                      Booking sekarang
+                    </button>
                   ) : (
-                    //discard or no
                     <Link
                       to={"/checking/" + data.id}
                       className="p-2 bg-yellow-400 rounded-xl text-white font-bold hover:bg-yellow-200 hover:text-gray-600 dark:bg-fuchsia-500 dark:hover:bg-fuchsia-300"

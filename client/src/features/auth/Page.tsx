@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import LabelTitle from "../../components/LabelTitle";
 import FormLogin from "./component/FormLogin";
 import FormRegister from "./component/FormRegister";
 import { Toaster } from "react-hot-toast";
+import LabelTitle from "../../components/LabelTitle";
 
 const Auth = () => {
   const [form, setForm] = useState("login");
@@ -12,21 +12,32 @@ const Auth = () => {
       <div>
         <Toaster />
       </div>
-      <div className="min-h-screen flex flex-col gap-2 xl:flex-row justify-between p-5 ">
+      <div className="min-h-screen flex flex-col gap-10 xl:flex-row justify-center items-center p-5 ">
+        <div className="mx-auto my-2 xl:hidden">
+          <LabelTitle size="text-6xl" />
+        </div>
         <div className="w-full min-h-screen  flex  ">
           <div
-            className={`w-full ${
+            className={`w-full  p-2  xl:ml-10 ${
               form === "login" ? "h-[500px]" : "h-[700px]"
-            }  my-auto bg-gradient-to-t from-fuchsia-400 rounded-xl flex flex-col`}
+            }  my-1 xl:my-auto  rounded-xl flex flex-col shadow-2xl bg-transparent/10`}
           >
-            <LabelTitle />
-            <div className="my-4 h-20 flex items-center justify-center">
+            {form === "login" ? (
+              <h1 className="text-2xl font-bold mx-auto mt-4 dark:text-white">
+                Login sekarang
+              </h1>
+            ) : (
+              <h1 className="text-2xl font-bold mx-auto mt-4 dark:text-white">
+                Daftar sekarang
+              </h1>
+            )}
+            <div className="my-1 h-20 flex items-center justify-center">
               <button
                 onClick={() => setForm("login")}
                 className={`${
                   form === "login"
                     ? "bg-fuchsia-400 text-white"
-                    : "bg-gray-50 hover:bg-gray-200"
+                    : "bg-gray-100 hover:bg-gray-200"
                 } flex w-40 h-1/2  rounded-l-lg`}
               >
                 <h5 className="m-auto font-semibold">Login</h5>
@@ -36,7 +47,7 @@ const Auth = () => {
                 className={`${
                   form === "register"
                     ? "bg-fuchsia-400 text-white"
-                    : "bg-gray-50 hover:bg-gray-200"
+                    : "bg-gray-100 hover:bg-gray-200"
                 } w-40 h-1/2   rounded-r-lg flex`}
               >
                 <h5 className="m-auto font-semibold">Regiter</h5>
@@ -51,14 +62,8 @@ const Auth = () => {
             </div>
           </div>
         </div>
-        <div className="hidden w-full min-h-screen  xl:flex">
-          <img
-            src="../img/dev/carousel.jpg"
-            alt="image auth"
-            className={`rounded-lg ${
-              form === "login" ? "h-[500px]" : "h-[700px]"
-            }  my-auto mx-auto`}
-          />
+        <div className="w-full hidden xl:flex justify-center items-center ">
+          <LabelTitle size="text-9xl" />
         </div>
       </div>
     </>
