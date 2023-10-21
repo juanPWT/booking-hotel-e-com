@@ -43,7 +43,7 @@ const Product: React.FC<childProductsProps> = ({ user }) => {
                   {data.name === "Superior Room" &&
                   "Deluxe Rooom" &&
                   "VIP Room" ? (
-                    <div className=" bg-fuchsia-500 text-white font-semibold text-sm p-1 rounded-full">
+                    <div className=" bg-yellow-400 dark:bg-fuchsia-400 text-white font-semibold text-sm p-1 rounded-full">
                       <span className="mx-2">Premium</span>
                     </div>
                   ) : (

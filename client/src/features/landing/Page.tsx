@@ -37,7 +37,7 @@ const Landing = () => {
         <div className="w-full  fixed top-0 z-50 ">
           <Navbar user={user} />
         </div>
-        <div className="container mx-auto my-20 z-0">
+        <div className="container mx-auto my-14 z-0">
           <Hero />
           <div className="mx-1">
             <Product user={user} />

@@ -35,6 +35,7 @@ class Facility extends ResourceController
     {
       $data = $this->request->getPost();
 
+      //if errors
       if(!$this->mdl->save($data)) {
         return $this->fail($this->mdl->errors());
       }
