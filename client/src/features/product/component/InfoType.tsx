@@ -5,21 +5,25 @@ import {
   roomAvailable,
 } from "../../../api/interface/index";
 import { rupiah } from "../../../hook/formater-currency";
+import { formatDateIndo } from "../../../hook/formater-date";
 import { Link } from "react-router-dom";
 import { toast } from "react-hot-toast";
-import { DateRangePicker } from "react-date-range";
 import { addDays } from "date-fns";
+import DatePicker from "./DatePicker";
+import CarouselProduct from "./CarouselProduct";
 
 interface childTypeDetailProps {
   typeDetail: typeDetail;
   user: userProps;
   roomAvailable: roomAvailable;
+  carouselImage: { name: string; image: string }[];
 }
 
 const InfoType: React.FC<childTypeDetailProps> = ({
   typeDetail,
   user,
   roomAvailable,
+  carouselImage,
 }) => {
   const [date, setDate] = useState([
     {
@@ -32,16 +36,30 @@ const InfoType: React.FC<childTypeDetailProps> = ({
   //date
   const startDate = date[0].startDate;
   const endDate = date[0].endDate;
+  const formatStartDate = formatDateIndo(startDate);
+  const formatEndDate = formatDateIndo(endDate);
+  //end of date
+
+  //total price realtime
+
+  const timeDifference = endDate.getTime() - startDate.getTime();
+  const numberDays = Math.ceil(timeDifference / (24 * 60 * 60 * 1000));
+  const totalPrice = typeDetail.type.price * numberDays;
+
+  //end of total price real time
 
   return (
     <>
       <div className="container flex justify-center items-center min-h-screen mx-auto ">
         <div className=" my-2 w-full p-4 flex flex-col xl:flex-row gap-5">
-          <img
-            src={typeDetail.type.imageURL}
-            alt="type image"
-            className="w-full h-[300px] mx-auto rounded-2xl object-cover xl:h-[500px] shadow-lg  xl:w-[600px] flex-1"
-          />
+          <div className=" flex flex-col">
+            <img
+              src={typeDetail.type.imageURL}
+              alt="type image"
+              className="w-full h-[300px] mx-auto rounded-2xl object-cover xl:h-[500px] shadow-lg  xl:w-[600px] flex-1"
+            />
+            <CarouselProduct carouselImage={carouselImage} />
+          </div>
           <div className="flex-1 ml-4">
             <div className="my-3 flex bg-white p-4 rounded-lg">
               <h1 className="text-4xl font-semibold m-auto  text-gray-700 ">
@@ -143,10 +161,10 @@ const InfoType: React.FC<childTypeDetailProps> = ({
                     ) as HTMLDialogElement;
                     dateModal.showModal();
                   }}
-                  className="mx-3 border-2 cursor-pointer border-gray-400 rounded-lg h-10 w-1/2 flex "
+                  className="mx-3 border-2 cursor-pointer border-gray-400 rounded-lg h-10 w-full  flex "
                 >
                   <h1 className="font-semibold m-auto">
-                    {startDate.toDateString()} - {endDate.toDateString()}
+                    {formatStartDate} - {formatEndDate}
                   </h1>
                 </div>
               </div>
@@ -154,9 +172,7 @@ const InfoType: React.FC<childTypeDetailProps> = ({
               <hr className="my-2 border-t-2" />
               <div className="my-1 w-full flex p-4 font-bold justify-center">
                 <h1 className="mx-3 text-2xl font-md">Total :</h1>
-                <h1 className="mx-3 text-2xl ">
-                  {rupiah(typeDetail.type.price)}
-                </h1>
+                <h1 className="mx-3 text-2xl ">{rupiah(totalPrice)}</h1>
               </div>
               <hr className="my-2 border-t-2" />
               <div className="flex my-3">
@@ -204,23 +220,13 @@ const InfoType: React.FC<childTypeDetailProps> = ({
       </div>
 
       {/* modal */}
-      <dialog id="dateModal" className="modal ">
-        <DateRangePicker
-          months={2}
-          ranges={date}
-          direction="horizontal"
-          onChange={(e) =>
-            e.selection
-              ? setDate([
-                  {
-                    startDate: e.selection.startDate || new Date(),
-                    endDate: e.selection.endDate || new Date(),
-                    key: "selection",
-                  },
-                ])
-              : setDate([])
-          }
-        />
+      <dialog id="dateModal" className="modal  ">
+        <div className="modal-box w-full ">
+          <DatePicker setDate={setDate} date={date} />
+        </div>
+        <form method="dialog" className="modal-backdrop">
+          <button>close</button>
+        </form>
       </dialog>
     </>
   );

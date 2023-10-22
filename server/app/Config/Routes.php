@@ -24,6 +24,10 @@ use CodeIgniter\Router\RouteCollection;
     $routes->patch('api/type/(:any)', 'Type::update/$1');
     $routes->delete('api/type/(:any)', 'Type::delete/$1');
 
+    //image product
+    $routes->post('api/image', 'Image::create');
+    $routes->get('api/image/(:any)', 'Image::show/$1');
+
 
     //room
     $routes->post('api/room', 'Room::create');

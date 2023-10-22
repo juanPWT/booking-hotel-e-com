@@ -70,3 +70,12 @@ export const postDataLoginUser = async (data: loginUserProps) => {
     }
   }
 };
+
+export const getAllImageByType = async (id: number) => {
+  try {
+    const get = await axios.get(`http://localhost:8080/api/image/${id}`);
+    return get.data.image;
+  } catch (error) {
+    console.log(error);
+  }
+};

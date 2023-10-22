@@ -29,10 +29,18 @@ const DetailProduct = () => {
     name: "",
     contact: 0,
   });
+
   const [roomAvailable, setRoomAvailable] = useState<roomAvailable>({
     typeName: "",
     roomAvailable: 0,
   });
+
+  const [carouselImage, setCarouselImage] = useState([
+    {
+      name: "",
+      image: "",
+    },
+  ]);
 
   const getId = location.pathname.split("/");
   const id = Number(getId[2]);
@@ -49,8 +57,14 @@ const DetailProduct = () => {
       setRoomAvailable(get);
     };
 
+    const getImageCarousel = async () => {
+      const get = await fetch.getAllImageByType(id);
+      setCarouselImage(get);
+    };
+
     getRoomAvailable();
     getTypeById();
+    getImageCarousel();
   }, [id]);
 
   React.useEffect(() => {
@@ -79,6 +93,7 @@ const DetailProduct = () => {
             typeDetail={typeDetail}
             user={user}
             roomAvailable={roomAvailable}
+            carouselImage={carouselImage}
           />
         </div>
         <div className="mt-auto">
