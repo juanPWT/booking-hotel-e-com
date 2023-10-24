@@ -42,6 +42,11 @@ const DetailProduct = () => {
     },
   ]);
 
+  const [rate, setRate] = useState({
+    name: "",
+    rateingAvg: 0.0,
+  });
+
   const getId = location.pathname.split("/");
   const id = Number(getId[2]);
 
@@ -62,9 +67,18 @@ const DetailProduct = () => {
       setCarouselImage(get);
     };
 
+    const getRating = async () => {
+      const get = await fetch.getRateing(id);
+      setRate({
+        name: get.data.name,
+        rateingAvg: get.data.ratingAvg,
+      });
+    };
+
     getRoomAvailable();
     getTypeById();
     getImageCarousel();
+    getRating();
   }, [id]);
 
   React.useEffect(() => {
@@ -94,6 +108,7 @@ const DetailProduct = () => {
             user={user}
             roomAvailable={roomAvailable}
             carouselImage={carouselImage}
+            rate={rate}
           />
         </div>
         <div className="mt-auto">

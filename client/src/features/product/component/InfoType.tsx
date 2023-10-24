@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   typeDetail,
   userProps,
@@ -11,12 +11,15 @@ import { toast } from "react-hot-toast";
 import { addDays } from "date-fns";
 import DatePicker from "./DatePicker";
 import CarouselProduct from "./CarouselProduct";
+import Rateing from "./Rateing";
+import Comment from "./Comment";
 
 interface childTypeDetailProps {
   typeDetail: typeDetail;
   user: userProps;
   roomAvailable: roomAvailable;
   carouselImage: { name: string; image: string }[];
+  rate: { name: string; rateingAvg: number };
 }
 
 const InfoType: React.FC<childTypeDetailProps> = ({
@@ -24,6 +27,7 @@ const InfoType: React.FC<childTypeDetailProps> = ({
   user,
   roomAvailable,
   carouselImage,
+  rate,
 }) => {
   const [date, setDate] = useState([
     {
@@ -32,6 +36,25 @@ const InfoType: React.FC<childTypeDetailProps> = ({
       key: "selection",
     },
   ]);
+
+  //for float card
+  const [float, setFloat] = useState("");
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > window.innerHeight) {
+        setFloat(
+          "xl:fixed xl:w-[600px] xl:top-1/2 xl:left-[1000px] xl:transform xl:-translate-x-1/2 xl:-translate-y-1/2"
+        );
+      } else {
+        setFloat("");
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   //date
   const startDate = date[0].startDate;
@@ -50,7 +73,7 @@ const InfoType: React.FC<childTypeDetailProps> = ({
 
   return (
     <>
-      <div className="container flex justify-center items-center min-h-screen mx-auto ">
+      <div className="container flex flex-col justify-center items-center min-h-screen mx-auto  ">
         <div className=" my-2 w-full p-4 flex flex-col xl:flex-row gap-5">
           <div className=" flex flex-col">
             <img
@@ -88,7 +111,10 @@ const InfoType: React.FC<childTypeDetailProps> = ({
                 </div>
               </div>
             </div>
-            <div className="w-full flex flex-col bg-white rounded-lg overflow-hidden my-2 shadow-lg">
+            {/* card data important */}
+            <div
+              className={`w-full flex flex-col bg-white rounded-lg overflow-hidden my-4 shadow-lg ${float}`}
+            >
               {user.id === 0 ? (
                 <div className="flex w-full gap-2 h-10 bg-gradient-to-r justify-center items-center from-fuchsia-600 via-red-600 to-orange-500">
                   <span className="text-white font-semibold text-sm">
@@ -215,6 +241,20 @@ const InfoType: React.FC<childTypeDetailProps> = ({
                 )}
               </div>
             </div>
+          </div>
+        </div>
+        {/* rating ulasan */}
+        <div className="my-1 w w-full flex flex-col h-auto p-4 ">
+          <div className="w-full h-24 p-4 flex justify-start">
+            <h1 className="text-2xl text-gray-700 font-bold dark:text-white">
+              Rating dan Ulasan
+            </h1>
+          </div>
+          <div className=" w-full h-auto mx-auto">
+            <Rateing rate={rate} />
+          </div>
+          <div className="w-full xl:w-1/2 h-auto   flex flex-col gap-3 justify-start p-4  mt-6 mb-2">
+            <Comment />
           </div>
         </div>
       </div>

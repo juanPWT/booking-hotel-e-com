@@ -23,6 +23,10 @@ class Auth extends BaseController
             'name'     => $this->request->getVar('name'),
             'contact'     => $this->request->getVar('contact'),
         ];
+        
+        if ($this->mdl->where('email', $data['email'])->first()) {
+            return $this->fail('email sudah di gunakan coba yang lain');
+        }
 
         if (!$this->mdl->save($data)) {
             return $this->fail($this->mdl->errors());

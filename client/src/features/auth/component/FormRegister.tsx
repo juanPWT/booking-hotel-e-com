@@ -25,11 +25,15 @@ const FormRegister: React.FC<childRegisterProps> = ({ setForm }) => {
         password: values.password,
       };
       const request = await postDataRegisterUser(postData);
-      toast.success(request);
-      setForm("login");
+      if (request?.status === 400) {
+        toast.error(request.messege);
+      } else {
+        toast.success(request?.messege);
+        setForm("login");
+      }
     };
-    postProccess();
     actions.resetForm();
+    postProccess();
   };
 
   const {

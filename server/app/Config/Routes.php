@@ -28,6 +28,11 @@ use CodeIgniter\Router\RouteCollection;
     $routes->post('api/image', 'Image::create');
     $routes->get('api/image/(:any)', 'Image::show/$1');
 
+    //rate and comment
+    $routes->post('api/comment/(:any)', 'Rate::create/$1' );
+    $routes->get('api/comment/(:any)', 'Rate::show/$1');
+    $routes->get('api/rate/(:any)', 'Rate::rate/$1');
+
 
     //room
     $routes->post('api/room', 'Room::create');

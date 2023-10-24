@@ -48,7 +48,7 @@ class Cors extends \Fluent\Cors\Config\Cors
      *
      * @var array
      */
-    public $allowedOrigins = ['*'];
+    public $allowedOrigins = ['http://localhost:5173'];
 
     /**
      * --------------------------------------------------------------------------

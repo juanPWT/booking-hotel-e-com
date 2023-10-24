@@ -46,9 +46,19 @@ export const postDataRegisterUser = async (data: postDataRegister) => {
         },
       }
     );
-    return post.data.messege;
-  } catch (error) {
-    console.log(error);
+    const res = {
+      status: 200,
+      messege: post.data.messege,
+    };
+    return res;
+  } catch (error: unknown) {
+    if (error instanceof Error && axios.isAxiosError(error) && error.response) {
+      const res = {
+        status: error.response.data.status,
+        messege: error.response.data.messages.error,
+      };
+      return res;
+    }
   }
 };
 
@@ -75,6 +85,15 @@ export const getAllImageByType = async (id: number) => {
   try {
     const get = await axios.get(`http://localhost:8080/api/image/${id}`);
     return get.data.image;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getRateing = async (id: number) => {
+  try {
+    const get = await axios.get(`http://localhost:8080/api/rate/${id}`);
+    return get.data;
   } catch (error) {
     console.log(error);
   }
