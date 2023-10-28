@@ -20,6 +20,7 @@ interface childTypeDetailProps {
   roomAvailable: roomAvailable;
   carouselImage: { name: string; image: string }[];
   rate: { name: string; rateingAvg: number };
+  comment: { name: string; comment: string; rating: number }[];
 }
 
 const InfoType: React.FC<childTypeDetailProps> = ({
@@ -28,6 +29,7 @@ const InfoType: React.FC<childTypeDetailProps> = ({
   roomAvailable,
   carouselImage,
   rate,
+  comment,
 }) => {
   const [date, setDate] = useState([
     {
@@ -254,7 +256,7 @@ const InfoType: React.FC<childTypeDetailProps> = ({
             <Rateing rate={rate} />
           </div>
           <div className="w-full xl:w-1/2 h-auto   flex flex-col gap-3 justify-start p-4  mt-6 mb-2">
-            <Comment />
+            <Comment comment={comment} />
           </div>
         </div>
       </div>

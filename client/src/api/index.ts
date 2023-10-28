@@ -98,3 +98,13 @@ export const getRateing = async (id: number) => {
     console.log(error);
   }
 };
+
+export const getCommentByTypeId = async (id: number) => {
+  try {
+    const get = await axios.get(`http://localhost:8080/api/comment/${id}`);
+
+    return get.data;
+  } catch (error) {
+    console.log(error);
+  }
+};

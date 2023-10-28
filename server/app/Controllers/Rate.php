@@ -16,10 +16,15 @@ class Rate extends BaseController
     }
 
     public function show($typeId) {
-        $data['rate'] = $this->mdl->getRateByTypeId($typeId);
+        $data = $this->mdl->getRateByTypeId($typeId);
 
-        if (!$data['rate']) {
-            return $this->failNotFound('data not found');
+        if (!$data) {
+            $response = [
+                'status' => 'not found',
+                'datas' => 'not comment yet',
+            ];
+    
+            return $this->respond($response);;
         }
 
         $response = [

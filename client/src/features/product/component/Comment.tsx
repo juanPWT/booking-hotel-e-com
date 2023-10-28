@@ -1,29 +1,74 @@
-import React from "react";
+import React, { useState } from "react";
 
-const Comment = () => {
-  const comment = 4;
-  const commentArray = Array.from({ length: comment });
-  return commentArray.map((_, i) => {
-    return (
-      <div key={i} className="flex flex-col gap-5 bg-white rounded-xl p-4">
-        <div className="flex gap-5">
-          <img
-            src="../img/dev/pp.png"
-            alt="profil"
-            className="w-10 h-10 rounded-full bg-cover"
-          />
-          <span className="text-lg my-auto font-semibold">Juan Pratama</span>
+interface childCommentProps {
+  comment: { name: string; comment: string; rating: number }[];
+}
+
+const Comment: React.FC<childCommentProps> = ({ comment }) => {
+  const [expanded, setExpanded] = useState(false);
+
+  const displayLimit = 4;
+
+  return Array.isArray(comment) ? (
+    <div className="flex flex-col gap-3 ">
+      {comment
+        .slice(0, expanded ? comment.length : displayLimit)
+        .map((data, i) => {
+          return (
+            <div
+              key={i}
+              className="flex flex-col gap-5 bg-white rounded-xl p-4"
+            >
+              <div className="flex gap-5">
+                <img
+                  src="../img/dev/pp.png"
+                  alt="profil"
+                  className="w-10 h-10 rounded-full bg-cover"
+                />
+                <span className="text-lg my-auto font-semibold">
+                  {data.name}
+                </span>
+              </div>
+              <hr className=" border-t-2 " />
+              <div className="w-full">
+                <p>{data.comment}</p>
+              </div>
+            </div>
+          );
+        })}
+      {comment.length > displayLimit && !expanded && (
+        <div className="flex justify-center items-center bg-white/60 rounded-lg p-2  ">
+          <button
+            onClick={() => setExpanded(true)}
+            className="text-lg font-semibold text-gray-600"
+          >
+            Tampilkan lebih banyak
+          </button>
         </div>
-        <hr className=" border-t-2 " />
-        <div className="w-full">
-          <p>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-            Temporibus, molestiae?
-          </p>
+      )}
+
+      {expanded && (
+        <div className="flex justify-center items-center bg-white/60 rounded-lg p-2 ">
+          <button
+            onClick={() => setExpanded(false)}
+            className="text-lg font-semibold text-gray-600"
+          >
+            Tampilkan lebih sedikit
+          </button>
         </div>
+      )}
+    </div>
+  ) : (
+    <div className="flex flex-col gap-5 bg-white rounded-xl p-4">
+      <div className="flex gap-5">
+        <span className="text-lg my-auto font-semibold">Belum Ada</span>
       </div>
-    );
-  });
+      <hr className=" border-t-2 " />
+      <div className="w-full">
+        <p>Tidak ada comment untuk sekarang</p>
+      </div>
+    </div>
+  );
 };
 
 export default Comment;

@@ -40,7 +40,7 @@ class RateModel extends Model
     ];
 
     public function getRateByTypeId($typeId) {
-        $query = "SELECT user.name, type.name, rate.comment, rate.rate as rating
+        $query = "SELECT user.name, rate.comment, rate.rate as rating
         FROM rate
         LEFT JOIN type
         ON type.id = rate.typeId

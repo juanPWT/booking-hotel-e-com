@@ -12,6 +12,12 @@ import React from "react";
 import jwt from "jwt-decode";
 import { Toaster } from "react-hot-toast";
 
+interface CommentProps {
+  name: string;
+  comment: string;
+  rating: number;
+}
+
 const DetailProduct = () => {
   const [typeDetail, setTypeDetail] = useState<typeDetail>({
     type: {
@@ -47,6 +53,8 @@ const DetailProduct = () => {
     rateingAvg: 0.0,
   });
 
+  const [comment, setComment] = useState<Array<CommentProps>>([]);
+
   const getId = location.pathname.split("/");
   const id = Number(getId[2]);
 
@@ -75,10 +83,16 @@ const DetailProduct = () => {
       });
     };
 
+    const getComment = async () => {
+      const get = await fetch.getCommentByTypeId(id);
+      setComment(get.datas);
+    };
+
     getRoomAvailable();
     getTypeById();
     getImageCarousel();
     getRating();
+    getComment();
   }, [id]);
 
   React.useEffect(() => {
@@ -109,6 +123,7 @@ const DetailProduct = () => {
             roomAvailable={roomAvailable}
             carouselImage={carouselImage}
             rate={rate}
+            comment={comment}
           />
         </div>
         <div className="mt-auto">
