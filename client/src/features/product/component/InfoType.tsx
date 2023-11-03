@@ -191,7 +191,7 @@ const InfoType: React.FC<childTypeDetailProps> = ({
                   }}
                   className="mx-3 border-2 cursor-pointer border-gray-400 rounded-lg h-10 w-full  flex "
                 >
-                  <h1 className="font-semibold m-auto">
+                  <h1 className="font-semibold m-auto text-sm xl:text-lg">
                     {formatStartDate} - {formatEndDate}
                   </h1>
                 </div>
@@ -234,6 +234,15 @@ const InfoType: React.FC<childTypeDetailProps> = ({
                 ) : (
                   <Link
                     to={"/checking/" + typeDetail.type.id}
+                    state={{
+                      dataBooking: {
+                        roomName: typeDetail.type.name,
+                        imageCover: typeDetail.type.imageURL,
+                        startDate: formatStartDate,
+                        endDate: formatEndDate,
+                        totalPrice: totalPrice,
+                      },
+                    }}
                     className="m-auto outline outline-yellow-500 px-4 py-2 rounded-xl hover:bg-yellow-500 hover:shadow-lg hover:shadow-ywllow-400 group dark:outline-fuchsia-500 dark:hover:bg-fuchsia-500"
                   >
                     <span className="text-yellow-500 font-semibold group-hover:text-white dark:text-fuchsia-500">
