@@ -39,7 +39,7 @@ const Page = () => {
         <div className="w-full  fixed top-0 z-50 ">
           <Navbar user={user} />
         </div>
-        <div className="container w-full mx-auto my-20 z-0">
+        <div className="container w-full mx-auto my-28 z-0">
           <FormData user={user} dataBooking={dataBooking} />
           <ButtonPayment dataBooking={dataBooking} user={user} />
         </div>

@@ -35,6 +35,16 @@ const Navbar: React.FC<childUserProps> = ({ user }) => {
 
   return (
     <>
+      <div className="w-full bg-fuchsia-400 h-7 text-white gap-2 flex justify-center items-center">
+        <h4 className="font-semibold ">we stand with Palestine 🍉 </h4>
+        <a
+          href="https://baznas.go.id/sedekahduniaislam?gclid=CjwKCAjw15eqBhBZEiwAbDomEnLq8laWzwNn1Ai4PvDizxgE4x4-95MslFW9eDh7IKhoK7chVteOLRoCp64QAvD_BwE"
+          target="_blank"
+          className=" underline text-sm hover:text-emerald-100"
+        >
+          click for help
+        </a>
+      </div>
       <div className="navbar bg-base-100  dark:bg-gradient-to-l dark:from-fuchsia-500 dark:bg-transparent">
         <div className="flex-1">
           <span className="m-4 normal-case font-bold text-2xl dark:text-white">

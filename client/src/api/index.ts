@@ -3,6 +3,7 @@ import {
   postDataRegister,
   loginUserProps,
   bookingProps,
+  commentAndRateProps,
 } from "./interface/index";
 
 export const fetchAllTypes = async () => {
@@ -149,5 +150,27 @@ export const getDetaillDataBooking = async (bookingId: number) => {
     return get.data;
   } catch (error) {
     console.log(error);
+  }
+};
+
+export const postCommentAndRate = async (
+  tyopeId: number,
+  data: commentAndRateProps
+) => {
+  try {
+    const post = await axios.post(
+      `http://localhost:8080/api/comment/${tyopeId}`,
+      data,
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    return post.data;
+  } catch (error: unknown) {
+    if (error instanceof Error && axios.isAxiosError(error) && error.response) {
+      return error.response.data;
+    }
   }
 };

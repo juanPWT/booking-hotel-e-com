@@ -71,3 +71,9 @@ export interface detailBookingProps {
   endDate: string;
   totalPrice: number;
 }
+
+export interface commentAndRateProps {
+  userId: number;
+  rate: number;
+  comment: string;
+}

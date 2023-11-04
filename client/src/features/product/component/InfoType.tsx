@@ -266,7 +266,7 @@ const InfoType: React.FC<childTypeDetailProps> = ({
             <Rateing rate={rate} />
           </div>
           <div className="w-full xl:w-1/2 h-auto   flex flex-col gap-3 justify-start p-4  mt-6 mb-2">
-            <Comment comment={comment} />
+            <Comment comment={comment} user={user} />
           </div>
         </div>
       </div>

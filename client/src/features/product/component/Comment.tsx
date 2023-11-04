@@ -1,10 +1,13 @@
 import React, { useState } from "react";
+import SendComment from "./SendComment";
+import { userProps } from "../../../api/interface";
 
 interface childCommentProps {
   comment: { name: string; comment: string; rating: number }[];
+  user: userProps;
 }
 
-const Comment: React.FC<childCommentProps> = ({ comment }) => {
+const Comment: React.FC<childCommentProps> = ({ comment, user }) => {
   const [expanded, setExpanded] = useState(false);
 
   const displayLimit = 4;
@@ -57,6 +60,7 @@ const Comment: React.FC<childCommentProps> = ({ comment }) => {
           </button>
         </div>
       )}
+      {user.id === 0 ? "" : <SendComment user={user} />}
     </div>
   ) : (
     <div className="flex flex-col gap-5 bg-white rounded-xl p-4">

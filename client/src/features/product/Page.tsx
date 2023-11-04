@@ -116,7 +116,7 @@ const DetailProduct = () => {
         <div className="w-full  fixed top-0 z-50 ">
           <Navbar user={user} />
         </div>
-        <div className="my-20 mx-auto z-0">
+        <div className="my-28 mx-auto z-0">
           <InfoType
             typeDetail={typeDetail}
             user={user}
