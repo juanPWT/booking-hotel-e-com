@@ -6,6 +6,7 @@ import DataBooking from "./DataBooking";
 interface childDataProps {
   user: userProps;
   dataBooking: {
+    typeId: number;
     roomName: string;
     imageCover: string;
     startDate: string;

@@ -3,6 +3,7 @@ import { rupiah } from "../../../hook/formater-currency";
 
 interface childDataBookingProps {
   dataBooking: {
+    typeId: number;
     roomName: string;
     imageCover: string;
     startDate: string;

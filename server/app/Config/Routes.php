@@ -43,3 +43,11 @@ use CodeIgniter\Router\RouteCollection;
     //auth client
     $routes->post('api/auth/register', 'Auth::register');
     $routes->post('api/auth/login', 'Auth::login');
+
+    //payment
+    $routes->post('api/payment', 'Payment::index');
+
+    //booking
+    $routes->post('api/booking', 'Booking::create');
+    $routes->get('api/booking/(:any)', 'Booking::show/$1');
+    $routes->get('api/detail/booking/(:any)', 'Booking::getDetailBooking/$1');

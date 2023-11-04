@@ -1,17 +1,37 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { userProps } from "../../api/interface";
 import { Link } from "react-router-dom";
 import DarkMOdeToggle from "../DarkMOdeToggle";
-
+import jwt from "jwt-decode";
+import * as fetch from "../../api/index";
 interface childUserProps {
   user: userProps;
 }
 
 const Navbar: React.FC<childUserProps> = ({ user }) => {
+  const [length, setlength] = useState(0);
+  const [bookingData, setBookingData] = useState([]);
+
   const handleLogout = () => {
     localStorage.removeItem("token");
     window.location.reload();
   };
+
+  useEffect(() => {
+    const getDataBooking = async () => {
+      const token = localStorage.getItem("token");
+      if (token) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const decodeToken: any = jwt(token);
+        const clientId = decodeToken.uid;
+        const get = await fetch.getDataBooking(clientId);
+
+        setlength(get.bookingData.length);
+        setBookingData(get.bookingData);
+      }
+    };
+    getDataBooking();
+  }, [user]);
 
   return (
     <>
@@ -56,7 +76,7 @@ const Navbar: React.FC<childUserProps> = ({ user }) => {
                     </svg>
 
                     <span className="badge badge-sm bg-red-300 indicator-item">
-                      1
+                      {length}
                     </span>
                   </div>
                 </label>
@@ -65,24 +85,48 @@ const Navbar: React.FC<childUserProps> = ({ user }) => {
                   className="mt-7 z-[1] card card-compact dropdown-content w-52 bg-base-100 shadow"
                 >
                   <div className="card-body">
-                    <span className="font-bold text-lg"> 2 Room</span>
+                    {length === 0 ? (
+                      <span className="font-bold text-lg">
+                        {" "}
+                        belum booking ya!
+                      </span>
+                    ) : (
+                      <span className="font-bold text-lg">
+                        {" "}
+                        {length} booking kamar
+                      </span>
+                    )}
+
                     <ul>
-                      <li className="bg-gradient-to-r mb-1  from-fuchsia-300/30 to-gray-100 p-2 font-semibold text-gray-700 rounded-lg">
-                        <div className="flex gap-2">
-                          <span>Superior Room</span>
-                          <a className="bg-green-300 fixed right-2 text-white font-light cursor-pointer px-2 text-sm rounded-full hover:bg-green-500 ">
-                            Detail
-                          </a>
-                        </div>
-                      </li>
-                      <li className="bg-gradient-to-r mb-1  from-fuchsia-300/30 to-gray-100 p-2 font-semibold text-gray-700 rounded-lg">
-                        <div className="flex gap-2">
-                          <span>Connection Room</span>
-                          <a className="bg-green-300 fixed right-2 text-white font-light cursor-pointer px-2 text-sm rounded-full hover:bg-green-500 ">
-                            Detail
-                          </a>
-                        </div>
-                      </li>
+                      {length === 0 ? (
+                        <li className="bg-gradient-to-r mb-1  from-fuchsia-300/30 to-gray-100 p-2 font-semibold text-gray-700 rounded-lg">
+                          <div className="flex gap-2">
+                            <span>buruan booking sekarang</span>
+                          </div>
+                        </li>
+                      ) : (
+                        bookingData.map(
+                          (data: { id: number; name: string }, i) => {
+                            return (
+                              <li
+                                key={i}
+                                className="bg-gradient-to-r mb-1  from-fuchsia-300/30 to-gray-100 p-2 font-semibold text-gray-700 rounded-lg"
+                              >
+                                <div className="flex gap-2">
+                                  <span>{data.name}</span>
+                                  <Link
+                                    to={"/detail/" + data.id}
+                                    className="bg-green-300 fixed right-2 text-white font-light cursor-pointer px-2 text-sm rounded-full hover:bg-green-500 "
+                                  >
+                                    Detail
+                                  </Link>
+                                </div>
+                              </li>
+                            );
+                          }
+                        )
+                      )}
+                      {}
                     </ul>
                   </div>
                 </div>

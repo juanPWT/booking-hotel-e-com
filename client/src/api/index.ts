@@ -1,5 +1,9 @@
 import axios from "axios";
-import { postDataRegister, loginUserProps } from "./interface/index";
+import {
+  postDataRegister,
+  loginUserProps,
+  bookingProps,
+} from "./interface/index";
 
 export const fetchAllTypes = async () => {
   try {
@@ -102,6 +106,45 @@ export const getRateing = async (id: number) => {
 export const getCommentByTypeId = async (id: number) => {
   try {
     const get = await axios.get(`http://localhost:8080/api/comment/${id}`);
+
+    return get.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const postBooking = async (data: bookingProps) => {
+  try {
+    const post = await axios.post("http://localhost:8080/api/booking", data, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    return post.data;
+  } catch (error: unknown) {
+    if (error instanceof Error && axios.isAxiosError(error) && error.response) {
+      return error.response.data;
+    }
+  }
+};
+
+export const getDataBooking = async (clientId: number) => {
+  try {
+    const get = await axios.get(
+      `http://localhost:8080/api/booking/${clientId}`
+    );
+
+    return get.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getDetaillDataBooking = async (bookingId: number) => {
+  try {
+    const get = await axios.get(
+      `http://localhost:8080/api/detail/booking/${bookingId}`
+    );
 
     return get.data;
   } catch (error) {

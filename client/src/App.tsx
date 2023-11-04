@@ -7,6 +7,7 @@ import jwt from "jwt-decode";
 import { userProps } from "../src/api/interface/index";
 import React, { useEffect } from "react";
 import NotFound from "./utils/pages/NotFound";
+import { DetailDataBooking } from "./features/chackin/components/DetailDataBooking";
 
 function App() {
   const [user, setUser] = React.useState<userProps>({
@@ -39,6 +40,10 @@ function App() {
         <Route
           path="/checking/:id"
           element={user.id ? <Page /> : <NotFound />}
+        />
+        <Route
+          path="/detail/:id"
+          element={user.id ? <DetailDataBooking /> : <NotFound />}
         />
         <Route path="*" element={<NotFound />} />
       </Routes>

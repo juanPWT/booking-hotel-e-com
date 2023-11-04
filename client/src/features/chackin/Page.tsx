@@ -5,6 +5,7 @@ import jwt from "jwt-decode";
 import { userProps } from "../../api/interface/index";
 import FormData from "./components/FormData";
 import { useLocation } from "react-router-dom";
+import ButtonPayment from "./components/payment/ButtonPayment";
 
 const Page = () => {
   const [user, setUser] = React.useState<userProps>({
@@ -31,6 +32,7 @@ const Page = () => {
       });
     }
   }, []);
+
   return (
     <>
       <div className="flex flex-col w-full min-h-screen justify-between">
@@ -39,6 +41,7 @@ const Page = () => {
         </div>
         <div className="container w-full mx-auto my-20 z-0">
           <FormData user={user} dataBooking={dataBooking} />
+          <ButtonPayment dataBooking={dataBooking} user={user} />
         </div>
         <div className="mt-auto">
           <Footer />

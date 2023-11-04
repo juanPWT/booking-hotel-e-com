@@ -7,6 +7,7 @@ import Stat from "./component/Stat";
 import { Toaster } from "react-hot-toast";
 import { userProps } from "../../api/interface/index";
 import jwt from "jwt-decode";
+import { useEffect } from "react";
 
 const Landing = () => {
   const [user, setUser] = React.useState<userProps>({
@@ -16,7 +17,7 @@ const Landing = () => {
     contact: 0,
   });
 
-  React.useEffect(() => {
+  useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any

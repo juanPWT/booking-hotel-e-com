@@ -236,6 +236,7 @@ const InfoType: React.FC<childTypeDetailProps> = ({
                     to={"/checking/" + typeDetail.type.id}
                     state={{
                       dataBooking: {
+                        typeId: typeDetail.type.id,
                         roomName: typeDetail.type.name,
                         imageCover: typeDetail.type.imageURL,
                         startDate: formatStartDate,

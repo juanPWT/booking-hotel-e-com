@@ -50,3 +50,24 @@ export interface roomAvailable {
   typeName: string;
   roomAvailable: number;
 }
+
+export interface bookingProps {
+  typeId: number;
+  clientId: number;
+  startDate: string;
+  endDate: string;
+  totalPrice: number;
+}
+
+export interface detailBookingProps {
+  id: number;
+  noRoom: string;
+  typeName: string;
+  imageURL: string;
+  name: string;
+  email: string;
+  contact: number;
+  startDate: string;
+  endDate: string;
+  totalPrice: number;
+}

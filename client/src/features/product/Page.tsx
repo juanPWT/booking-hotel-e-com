@@ -95,7 +95,7 @@ const DetailProduct = () => {
     getComment();
   }, [id]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
