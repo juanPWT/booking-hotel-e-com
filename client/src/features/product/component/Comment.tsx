@@ -63,14 +63,17 @@ const Comment: React.FC<childCommentProps> = ({ comment, user }) => {
       {user.id === 0 ? "" : <SendComment user={user} />}
     </div>
   ) : (
-    <div className="flex flex-col gap-5 bg-white rounded-xl p-4">
-      <div className="flex gap-5">
-        <span className="text-lg my-auto font-semibold">Belum Ada</span>
+    <div className="flex flex-col gap-5">
+      <div className="flex flex-col gap-5 bg-white rounded-xl p-4">
+        <div className="flex gap-5">
+          <span className="text-lg my-auto font-semibold">Belum Ada</span>
+        </div>
+        <hr className=" border-t-2 " />
+        <div className="w-full">
+          <p>Tidak ada comment untuk sekarang jadilah yang pertama</p>
+        </div>
       </div>
-      <hr className=" border-t-2 " />
-      <div className="w-full">
-        <p>Tidak ada comment untuk sekarang</p>
-      </div>
+      {user.id === 0 ? "" : <SendComment user={user} />}
     </div>
   );
 };

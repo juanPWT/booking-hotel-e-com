@@ -94,5 +94,21 @@ class BookingModel extends Model
 
         return $querySet->getRow();
     }
+
+    public function getDataForOffice()  {
+        $query = "SELECT booking.id, booking.startDate, booking.endDate, booking.totalPrice, type.name as typeName, room.noRoom, user.name as userName, room.isFill
+         FROM booking
+         LEFT JOIN room
+         ON room.id = booking.roomId
+         LEFT JOIN type
+         ON type.id = room.typeId
+         LEFT JOIN user
+         ON user.id = booking.clientId
+            ORDER BY booking.id DESC
+         ";
+
+         $querySet = $this->db->query($query);
+         return $querySet->getResultArray();
+    }
    
 }

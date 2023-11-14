@@ -51,3 +51,12 @@ use CodeIgniter\Router\RouteCollection;
     $routes->post('api/booking', 'Booking::create');
     $routes->get('api/booking/(:any)', 'Booking::show/$1');
     $routes->get('api/detail/booking/(:any)', 'Booking::getDetailBooking/$1');
+
+
+    //back office
+    $routes->get('office', 'Office::index');
+    $routes->get('office/booking', 'Office::booking');
+    $routes->get('office/room', 'Office::room');
+    $routes->post('office/room/checkout/(:any)', 'Office::checkOut/$1');
+    //auth back office
+    $routes->get('office/auth', 'AuthOffice::index');

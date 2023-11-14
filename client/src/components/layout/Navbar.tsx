@@ -35,7 +35,7 @@ const Navbar: React.FC<childUserProps> = ({ user }) => {
 
   return (
     <>
-      <div className="w-full bg-fuchsia-400 h-7 text-white gap-2 flex justify-center items-center">
+      <div className="w-full bg-gradient-to-r from-green-500 via-red-500 to-gray-300 h-7 text-white gap-2 flex justify-center items-center">
         <h4 className="font-semibold ">we stand with Palestine 🍉 </h4>
         <a
           href="https://baznas.go.id/sedekahduniaislam?gclid=CjwKCAjw15eqBhBZEiwAbDomEnLq8laWzwNn1Ai4PvDizxgE4x4-95MslFW9eDh7IKhoK7chVteOLRoCp64QAvD_BwE"

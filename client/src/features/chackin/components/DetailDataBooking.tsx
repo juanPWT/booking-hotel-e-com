@@ -20,6 +20,7 @@ export const DetailDataBooking = () => {
     totalPrice: 0,
     typeName: "",
   });
+  const [exp, setExp] = useState(false);
 
   useEffect(() => {
     const getDetail = async () => {
@@ -27,10 +28,15 @@ export const DetailDataBooking = () => {
       setDetail(get.detailData);
     };
 
-    getDetail();
-  }, [idBooking]);
+    const dateNow = new Date();
+    const checkOutDate = new Date(detail.endDate);
 
-  console.log(detail);
+    if (dateNow >= checkOutDate) {
+      setExp(true);
+    }
+
+    getDetail();
+  }, [idBooking, detail]);
 
   return (
     <>
@@ -57,9 +63,18 @@ export const DetailDataBooking = () => {
           </Link>
           <div className="mt-5 mb-10 bg-base-100 mx-auto shadow-lg w-full h-full rounded-xl p-5 flex flex-col">
             <div className="w-full flex  mt-2 justify-center items-center">
-              <span className="font-bold text-xl">
+              <span className="font-bold text-xl flex gap-1">
                 {" "}
-                Detail Booking Kamar Anda{" "}
+                <span className="">Detail Booking Kamar Anda </span>
+                {exp ? (
+                  <div className="m-auto outline outline-red-500  rounded-full flex justify-center items-center ">
+                    <h6 className="text-xs my-2 mx-1 text-red-500">
+                      booking sudah kadaluarsa
+                    </h6>
+                  </div>
+                ) : (
+                  ""
+                )}
               </span>
             </div>
             <hr className="my-5 border-t-2" />
