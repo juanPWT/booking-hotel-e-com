@@ -14,7 +14,7 @@ class Payment extends BaseController
         $serverKey = getenv('SERVER_KEY');
 
                 // Set your Merchant Server Key
-        \Midtrans\Config::$serverKey = '';
+        \Midtrans\Config::$serverKey = 'SB-Mid-server-BWdDgh8cKO5OaeXI8wv-kirr';
         // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
         \Midtrans\Config::$isProduction = false;
         // Set sanitization on (default)

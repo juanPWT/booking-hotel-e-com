@@ -57,12 +57,6 @@ class RoomModel extends Model
         
     }
 
-    public function getDataForOffice() {
-        $query = "SELECT room.id, room.noRoom, room.isFill, type.name as typeName FROM room LEFT JOIN type ON type.id = room.typeId";
-
-        $querySet = $this->db->query($query);
-        return $querySet->getResultArray();
-    }
 
 
    

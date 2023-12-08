@@ -37,7 +37,7 @@ const ButtonPayment: React.FC<childButtonPaymentProps> = ({
   useEffect(() => {
     const scripts = document.createElement("script");
     scripts.src = "https://app.sandbox.midtrans.com/snap/snap.js";
-    scripts.setAttribute("data-client-key", "");
+    scripts.setAttribute("data-client-key", "SB-Mid-client-FLhexgbWpV6c1y6g");
     scripts.async = true;
     document.head.appendChild(scripts);
     setRequest({
